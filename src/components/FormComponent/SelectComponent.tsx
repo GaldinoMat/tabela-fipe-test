@@ -2,12 +2,12 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useContext, useEffect, useState } from "react";
 import FormControl from "@mui/material/FormControl";
-import { SelectProps } from "./types/types";
 import InputLabel from "@mui/material/InputLabel";
 import { ResponseContext } from "@/hooks/useResponse/useResponse";
 import { ActionType as ResponseDispatchActionType } from "@/hooks/useResponse/types/types";
 import { StateContext } from "@/hooks/useSelectedState/useSelectedState";
 import { ActionType as StateDispatchActionType } from "@/hooks/useSelectedState/types/types";
+import { SelectProps } from "./types/types";
 
 export default function SelectComponent({
   isHidden,

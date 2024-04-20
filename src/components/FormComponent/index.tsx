@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Form from "./components/Form/Form";
+import FormContainer from "./FormContainer";
 
 export default function FormComponent() {
   return (
@@ -21,7 +21,7 @@ export default function FormComponent() {
         variant="h2"
         sx={{
           textAlign: "center",
-          fontSize: "1.05rem",
+          fontSize: "1.25rem",
           whiteSpace: "nowrap",
           fontWeight: "700",
           color: "#424242",
@@ -30,7 +30,7 @@ export default function FormComponent() {
       >
         Consulte o valor de um veiculo de forma gratuita
       </Typography>
-      <Form />
+      <FormContainer />
     </Box>
   );
 }

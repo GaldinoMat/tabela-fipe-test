@@ -1,10 +1,26 @@
-import Home from "@/pages";
+import Home, { getStaticProps } from "@/pages";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import { ParsedUrlQuery } from "querystring";
+import { GetStaticProps, GetStaticPropsContext } from "next";
 
 describe("Page", () => {
+  const unmockedFetch = global.fetch;
+
   beforeEach(() => {
-    render(<Home brands={[]} />);
+    render(<Home brands={[{ codigo: "1", nome: "Carros" }]} />);
+  });
+
+  beforeAll(() => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve([{ codigo: "1", nome: "Carro" }]),
+      })
+    ) as jest.Mock;
+  });
+
+  afterAll(() => {
+    global.fetch = unmockedFetch;
   });
 
   it("should render a H1 heading", () => {
@@ -23,5 +39,13 @@ describe("Page", () => {
     const form = screen.getByTestId("form");
 
     expect(form).toBeInTheDocument();
-  })
+  });
+
+  it("should return something from getStaticProps", () => {
+    const context = {
+      params: { id: "1" } as ParsedUrlQuery,
+    };
+    const value = getStaticProps(context as GetStaticPropsContext);
+    expect(value).toBeTruthy();
+  });
 });

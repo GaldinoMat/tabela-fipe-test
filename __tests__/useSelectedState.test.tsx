@@ -4,12 +4,8 @@ import {
   State,
 } from "@/hooks/useSelectedState/types/types";
 import { reducer } from "@/hooks/useSelectedState/useSelectedState";
+import { MockResponseObject } from "@/pages/types/types";
 import "@testing-library/jest-dom";
-
-interface MockResponseObject {
-  paramKey: string;
-  paramValue: string;
-}
 
 describe("useSelectedState Hook", () => {
   const mockInitialStateConstructor = (params: MockResponseObject[]): State => {

@@ -1,5 +1,5 @@
-import SelectComponent from "@/components/FormComponent/components/Select/SelectComponent";
-import { SelectProps } from "@/components/FormComponent/components/Select/types/types";
+import SelectComponent from "@/components/FormComponent/SelectComponent";
+import { SelectProps } from "@/components/FormComponent/types/types";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 
@@ -53,5 +53,21 @@ describe("Select Component", () => {
       fireEvent.change(field, { target: { value: "1" } });
       expect(field.value).toBe("1");
     }
+  });
+
+  it("should not render select component when no children is passed", () => {
+    render(
+      <SelectComponent
+        placeholder="Ano"
+        testId="select-year"
+        isHidden={[].length === 0 ? true : false}
+      >
+        {[]}
+      </SelectComponent>
+    );
+
+    const selectYears = screen.getByTestId("select-year");
+
+    expect(selectYears).not.toBeVisible();
   });
 });

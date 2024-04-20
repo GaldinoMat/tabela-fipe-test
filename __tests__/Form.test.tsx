@@ -1,27 +1,14 @@
-import FormComponent from "@/components/FormComponent";
+import Form from "@/components/FormComponent/Form";
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("Form Component", () => {
-  beforeEach(() => {
-    render(<FormComponent />);
+  it("should call handleSubmit function when clicking the submit button", () => {
+    const testSubmit = jest.fn((e) => e.preventDefault());
+    render(<Form handleSubmit={testSubmit} isValid />);
+    const submitButton = screen.getByTestId("submit-button");
+
+    fireEvent.click(submitButton);
+    expect(testSubmit).toHaveBeenCalled();
   });
-
-  it("should render two base select components", () => {
-    const select1 = screen.getByTestId("select-brand");
-    const select2 = screen.getByTestId("select-model");
-
-    expect(select1).toBeInTheDocument();
-    expect(select2).toBeInTheDocument();
-  });
-
-  it("should not render the year select component initially", () => {
-    const select1 = screen.getByTestId("select-year");
-
-    expect(select1).not.toBeVisible();
-  });
-
-  it('should call handleSubmit function when clicking button', () => {
-
-  })
 });

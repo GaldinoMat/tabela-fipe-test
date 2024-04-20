@@ -33,7 +33,7 @@ export default function Home({ brands }: HomeProps) {
         <CssBaseline />
         <Container
           maxWidth={false}
-          sx={{ bgcolor: "#F9F6FC", height: "100vh" }}
+          sx={{ bgcolor: "#F9F6FC", height: "100vh", paddingTop: "2.5rem" }}
         >
           <FormComponent />
         </Container>
