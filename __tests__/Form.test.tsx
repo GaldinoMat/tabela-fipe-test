@@ -1,4 +1,4 @@
-import FormComponent from "@/app/components/FormComponent";
+import FormComponent from "@/components/FormComponent";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 

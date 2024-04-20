@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Select from "../Select/Select";
+import Select from "../Select/SelectComponent";
 
 export default function Form() {
   return (
@@ -23,19 +23,9 @@ export default function Form() {
           boxShadow: "0px 1px 1px 1px rgba(233,230,236,1)",
         }}
       >
-        <FormControl
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: ".75rem",
-            width: "100%",
-          }}
-        >
-          <Select placeholder="Marca" testId="select-car" value={{}} />
-          <Select placeholder="Modelo" testId="select-model" value={{}} />
-          <Select placeholder="Ano" testId="select-year" isHidden value={{}} />
-        </FormControl>
+        <Select placeholder="Marca" testId="select-car" value="" />
+        <Select placeholder="Modelo" testId="select-model" value="" />
+        <Select placeholder="Ano" testId="select-year" isHidden value="" />
         <Button
           variant="contained"
           color="primary"
