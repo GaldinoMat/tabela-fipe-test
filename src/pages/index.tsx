@@ -4,10 +4,10 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import FormComponent from "@/components/FormComponent";
 import { GetStaticProps } from "next";
-import { HomeProps } from "@/pages/types/types";
 import { useContext, useEffect } from "react";
 import { ResponseContext } from "@/hooks/useResponse/useResponse";
 import { ActionType } from "@/hooks/useResponse/types/types";
+import { HomeProps } from "@/types/types";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],

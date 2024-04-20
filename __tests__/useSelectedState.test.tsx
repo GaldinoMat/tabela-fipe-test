@@ -4,7 +4,7 @@ import {
   State,
 } from "@/hooks/useSelectedState/types/types";
 import { reducer } from "@/hooks/useSelectedState/useSelectedState";
-import { MockResponseObject } from "@/pages/types/types";
+import { MockResponseObject } from "@/types/types";
 import "@testing-library/jest-dom";
 
 describe("useSelectedState Hook", () => {

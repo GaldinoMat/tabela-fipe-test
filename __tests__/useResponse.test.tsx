@@ -1,6 +1,7 @@
 import { ActionType, Actions, State } from "@/hooks/useResponse/types/types";
 import { reducer } from "@/hooks/useResponse/useResponse";
-import { GenericArr } from "@/pages/types/types";
+import { GenericArr } from "@/types/types";
+
 import "@testing-library/jest-dom";
 
 describe("useResponse Hook", () => {

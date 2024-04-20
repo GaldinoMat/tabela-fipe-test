@@ -1,4 +1,4 @@
-import { GenericArr } from "@/pages/types/types";
+import { GenericArr } from "@/types/types";
 import { FormEvent } from "react";
 
 export interface ModeloFipe {
