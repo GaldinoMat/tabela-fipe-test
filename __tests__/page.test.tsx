@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 
 describe("Page", () => {
   beforeEach(() => {
-    render(<Home />);
+    render(<Home brands={[]} />);
   });
 
   it("should render a H1 heading", () => {

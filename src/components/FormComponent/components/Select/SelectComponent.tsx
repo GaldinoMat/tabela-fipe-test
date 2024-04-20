@@ -1,17 +1,20 @@
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { GenericArr } from "@/pages/types/types";
 
 interface SelectProps {
   testId: string;
   placeholder: string;
   value: string;
   isHidden?: boolean;
+  children?: GenericArr[];
 }
 
 export default function SelectComponent({
   isHidden,
   testId,
   placeholder,
+  children,
   value,
 }: SelectProps) {
   return (
@@ -19,6 +22,7 @@ export default function SelectComponent({
       <Select
         value={value}
         data-testid={testId}
+        placeholder={placeholder}
         // onChange={handleChange}
         sx={
           isHidden
@@ -26,7 +30,9 @@ export default function SelectComponent({
             : { borderColor: "#E9E6EC", width: "100%" }
         }
       >
-        {/* <MenuItem value={10}>Ten</MenuItem> */}
+        {/* {children?.map((child) => (
+          <MenuItem id={child.código}>{child.nome}</MenuItem>
+        ))} */}
       </Select>
     </>
   );

@@ -1,11 +1,13 @@
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Select from "../Select/SelectComponent";
+import { useContext } from "react";
+import { ResponseContext } from "@/hooks/useResponse";
 
 export default function Form() {
+  const { state } = useContext(ResponseContext);
+
   return (
     <Container maxWidth="xs">
       <Box
@@ -23,7 +25,12 @@ export default function Form() {
           boxShadow: "0px 1px 1px 1px rgba(233,230,236,1)",
         }}
       >
-        <Select placeholder="Marca" testId="select-car" value="" />
+        <Select
+          // children={models}
+          placeholder="Marca"
+          testId="select-car"
+          value=""
+        />
         <Select placeholder="Modelo" testId="select-model" value="" />
         <Select placeholder="Ano" testId="select-year" isHidden value="" />
         <Button
