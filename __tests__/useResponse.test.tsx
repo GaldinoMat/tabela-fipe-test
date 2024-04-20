@@ -1,5 +1,5 @@
-import { ActionType, Actions, State } from "@/hooks/types/types";
-import { reducer } from "@/hooks/useResponse";
+import { ActionType, Actions, State } from "@/hooks/useResponse/types/types";
+import { reducer } from "@/hooks/useResponse/useResponse";
 import { GenericArr } from "@/pages/types/types";
 import "@testing-library/jest-dom";
 
@@ -17,7 +17,7 @@ describe("useResponse Hook", () => {
 
     const brands: GenericArr[] = [
       {
-        código: "1",
+        codigo: "1",
         nome: "Honda",
       },
     ];
@@ -25,7 +25,7 @@ describe("useResponse Hook", () => {
     const expectedArr: State = {
       brands: [
         {
-          código: "1",
+          codigo: "1",
           nome: "Honda",
         },
       ],
@@ -45,7 +45,7 @@ describe("useResponse Hook", () => {
 
     const models: GenericArr[] = [
       {
-        código: "1",
+        codigo: "1",
         nome: "Civic",
       },
     ];
@@ -54,7 +54,7 @@ describe("useResponse Hook", () => {
       brands: [],
       models: [
         {
-          código: "1",
+          codigo: "1",
           nome: "Civic",
         },
       ],
@@ -73,7 +73,7 @@ describe("useResponse Hook", () => {
 
     const years: GenericArr[] = [
       {
-        código: "2022-3",
+        codigo: "2022-3",
         nome: "2022 Gasolina",
       },
     ];
@@ -83,7 +83,7 @@ describe("useResponse Hook", () => {
       models: [],
       years: [
         {
-          código: "2022-3",
+          codigo: "2022-3",
           nome: "2022 Gasolina",
         },
       ],

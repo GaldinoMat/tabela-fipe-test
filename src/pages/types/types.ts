@@ -1,5 +1,5 @@
 export interface GenericArr {
-  código: string;
+  codigo: string;
   nome: string;
 }
 

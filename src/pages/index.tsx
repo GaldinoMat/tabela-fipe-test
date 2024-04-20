@@ -5,10 +5,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FormComponent from "@/components/FormComponent";
 import { GetStaticProps } from "next";
 import { HomeProps } from "@/pages/types/types";
-import { useDispatch } from "react-redux";
 import { useContext, useEffect } from "react";
-import { ResponseContext } from "@/hooks/useResponse";
-import { ActionType } from "@/hooks/types/types";
+import { ResponseContext } from "@/hooks/useResponse/useResponse";
+import { ActionType } from "@/hooks/useResponse/types/types";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -20,7 +19,7 @@ export default function Home({ brands }: HomeProps) {
 
   useEffect(() => {
     dispatch({ type: ActionType.AddBrands, payload: brands });
-  }, [brands]);
+  }, [brands, dispatch]);
 
   return (
     <>

@@ -8,7 +8,7 @@ describe("Form Component", () => {
   });
 
   it("should render two base select components", () => {
-    const select1 = screen.getByTestId("select-car");
+    const select1 = screen.getByTestId("select-brand");
     const select2 = screen.getByTestId("select-model");
 
     expect(select1).toBeInTheDocument();
@@ -20,4 +20,8 @@ describe("Form Component", () => {
 
     expect(select1).not.toBeVisible();
   });
+
+  it('should call handleSubmit function when clicking button', () => {
+
+  })
 });
