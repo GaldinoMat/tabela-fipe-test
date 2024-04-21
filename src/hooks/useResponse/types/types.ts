@@ -5,6 +5,7 @@ export interface State {
   brands: GenericArr[];
   models: GenericArr[];
   years: GenericArr[];
+  errorMessage: string;
 }
 
 export interface Context {
@@ -16,6 +17,8 @@ export enum ActionType {
   AddBrands,
   AddModels,
   AddYears,
+  AddError,
+  ClearState,
 }
 
 export interface AddBrands {
@@ -33,8 +36,16 @@ export interface AddYears {
   payload: GenericArr[];
 }
 
+export interface AddError {
+  type: ActionType.AddError;
+}
+
+export interface ClearState {
+  type: ActionType.ClearState;
+}
+
 export interface Provider {
   children: ReactNode;
 }
 
-export type Actions = AddBrands | AddModels | AddYears;
+export type Actions = AddBrands | AddModels | AddYears | AddError | ClearState;

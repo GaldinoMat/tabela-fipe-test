@@ -30,6 +30,12 @@ export const reducer = (state: State, action: Actions) => {
         ...state,
         year: action.payload,
       };
+    case ActionType.ClearState:
+      return {
+        ...state,
+        model: "",
+        year: "",
+      };
     default:
       throw new Error("No valid reducer actions");
   }

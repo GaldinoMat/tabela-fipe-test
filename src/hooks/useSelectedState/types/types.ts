@@ -15,7 +15,7 @@ export enum ActionType {
   AddBrand,
   AddModel,
   AddYear,
-  AddResponse,
+  ClearState,
 }
 
 export interface AddBrand {
@@ -33,9 +33,8 @@ export interface AddYear {
   payload: string;
 }
 
-export interface AddResponse {
-  type: ActionType.AddResponse;
-  payload: Response;
+export interface ClearState {
+  type: ActionType.ClearState;
 }
 
-export type Actions = AddBrand | AddModel | AddYear | AddResponse;
+export type Actions = AddBrand | AddModel | AddYear | ClearState;

@@ -87,6 +87,25 @@ describe("useSelectedState Hook", () => {
     expect(resp).toMatchObject(expectedArr);
   });
 
+  it("should clear the state", () => {
+    const mockInitialState = mockInitialStateConstructor([
+      { paramKey: "brand", paramValue: "1" },
+      { paramKey: "model", paramValue: "1" },
+    ]);
+
+    const expectedArr: State = {
+      brand: "1",
+      model: "",
+      year: "",
+    };
+
+    const mockAction: Actions = { type: ActionType.ClearState };
+
+    const resp = reducer(mockInitialState, mockAction);
+
+    expect(resp).toMatchObject(expectedArr);
+  });
+
   it("should throw an error when no valid action is sent", () => {
     const mockInitialState = mockInitialStateConstructor([]);
 

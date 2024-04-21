@@ -19,3 +19,9 @@ export interface FormTypes {
   handleSubmit: (e: FormEvent<HTMLInputElement>) => void;
   isValid: boolean;
 }
+
+export interface Fipe {
+  fipeInfo: ModeloFipe;
+  isValid: boolean;
+  errorMessage: string;
+}

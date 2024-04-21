@@ -22,7 +22,6 @@ export default function FormComponent() {
         sx={{
           textAlign: "center",
           fontSize: "1.25rem",
-          whiteSpace: "nowrap",
           fontWeight: "700",
           color: "#424242",
           marginBottom: "1rem",

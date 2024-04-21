@@ -10,6 +10,7 @@ describe("useResponse Hook", () => {
       brands: [],
       models: [],
       years: [],
+      errorMessage: "",
     };
   };
 
@@ -32,6 +33,7 @@ describe("useResponse Hook", () => {
       ],
       models: [],
       years: [],
+      errorMessage: "",
     };
 
     const mockAction: Actions = { type: ActionType.AddBrands, payload: brands };
@@ -60,6 +62,7 @@ describe("useResponse Hook", () => {
         },
       ],
       years: [],
+      errorMessage: "",
     };
 
     const mockAction: Actions = { type: ActionType.AddModels, payload: models };
@@ -88,11 +91,56 @@ describe("useResponse Hook", () => {
           nome: "2022 Gasolina",
         },
       ],
+      errorMessage: "",
     };
 
     const mockAction: Actions = { type: ActionType.AddYears, payload: years };
 
     const resp = reducer(mockInitialState, mockAction);
+
+    expect(resp).toMatchObject(expectedArr);
+  });
+
+  it("should return a state with error message", () => {
+    const filledMockInitialState: State = {
+      brands: [{ codigo: "1", nome: "A" }],
+      models: [{ codigo: "1", nome: "B" }],
+      years: [{ codigo: "1", nome: "C" }],
+      errorMessage: "",
+    };
+
+    const expectedArr: State = {
+      brands: [],
+      models: [],
+      years: [],
+      errorMessage: "Um erro ocorreu. Tente novamente mais tarde.",
+    };
+
+    const mockAction: Actions = { type: ActionType.AddError };
+
+    const resp = reducer(filledMockInitialState, mockAction);
+
+    expect(resp).toMatchObject(expectedArr);
+  });
+
+  it("should clear the state", () => {
+    const filledMockInitialState: State = {
+      brands: [{ codigo: "1", nome: "A" }],
+      models: [{ codigo: "1", nome: "B" }],
+      years: [{ codigo: "1", nome: "C" }],
+      errorMessage: "",
+    };
+
+    const expectedArr: State = {
+      brands: [{ codigo: "1", nome: "A" }],
+      models: [],
+      years: [],
+      errorMessage: "",
+    };
+
+    const mockAction: Actions = { type: ActionType.ClearState };
+
+    const resp = reducer(filledMockInitialState, mockAction);
 
     expect(resp).toMatchObject(expectedArr);
   });

@@ -1,19 +1,15 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { ModeloFipe } from "./types/types";
+import { Fipe } from "./types/types";
 
-interface FipeResult {
-  fipeInfo: ModeloFipe;
-  isValid: boolean;
-}
+export default function FipeResult({ isValid, fipeInfo, errorMessage }: Fipe) {
+  const showResult = isValid && fipeInfo?.Modelo !== "";
 
-export default function FipeResult({ isValid, fipeInfo }: FipeResult) {
   return (
-    <Box>
-      {isValid && fipeInfo?.Modelo !== "" && (
+    <Box data-testid={showResult ? "fipe-result" : "fipe-error"}>
+      {showResult ? (
         <Box
-          data-testid="fipe-result"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -53,6 +49,16 @@ export default function FipeResult({ isValid, fipeInfo }: FipeResult) {
             Este é preço de compra do veículo
           </Typography>
         </Box>
+      ) : errorMessage?.length !== 0 ? (
+        <Typography
+          variant="h3"
+          color="#424242"
+          sx={{ fontSize: "1.5rem", fontWeight: "700", textAlign: "center" }}
+        >
+          {errorMessage}
+        </Typography>
+      ) : (
+        <></>
       )}
     </Box>
   );

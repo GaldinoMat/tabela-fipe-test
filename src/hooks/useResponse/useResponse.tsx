@@ -5,6 +5,7 @@ const initialState: State = {
   brands: [],
   models: [],
   years: [],
+  errorMessage: "",
 };
 
 export const ResponseContext = createContext<Context>({
@@ -28,6 +29,21 @@ export const reducer = (state: State, action: Actions) => {
       return {
         ...state,
         years: action.payload,
+      };
+    case ActionType.AddError:
+      return {
+        brands: [],
+        models: [],
+        years: [],
+        errorMessage: "Um erro ocorreu. Tente novamente mais tarde.",
+      };
+
+    case ActionType.ClearState:
+      return {
+        ...state,
+        models: [],
+        years: [],
+        errorMessage: "",
       };
     default:
       throw new Error("No valid reducer actions");

@@ -8,6 +8,7 @@ import { ActionType as ResponseDispatchActionType } from "@/hooks/useResponse/ty
 import { StateContext } from "@/hooks/useSelectedState/useSelectedState";
 import { ActionType as StateDispatchActionType } from "@/hooks/useSelectedState/types/types";
 import { SelectProps } from "./types/types";
+import getFipeInfo from "@/utils/GetFipeInfo";
 
 export default function SelectComponent({
   isHidden,
@@ -20,25 +21,20 @@ export default function SelectComponent({
   const [selectedVariant, setSelectedVariant] = useState<string>("");
 
   const handleChange = async (event: SelectChangeEvent) => {
+    setSelectedVariant("");
     if (/\d/.test(event.target.value)) {
       setSelectedVariant(event.target.value);
       if (placeholder === "Marca") {
-        const { modelos } = await fetch(
-          `https://parallelum.com.br/fipe/api/v1/carros/marcas/${event.target.value}/modelos`
-        ).then((resp) => resp.json());
+        const { modelos } = await getFipeInfo(event.target.value);
 
+        responseDispatch({ type: ResponseDispatchActionType.ClearState });
         responseDispatch({
           type: ResponseDispatchActionType.AddModels,
           payload: modelos,
         });
-        responseDispatch({
-          type: ResponseDispatchActionType.AddYears,
-          payload: [],
-        });
       } else if (placeholder === "Modelo") {
-        const data = await fetch(
-          `https://parallelum.com.br/fipe/api/v1/carros/marcas/${state.brand}/modelos/${event.target.value}/anos`
-        ).then((resp) => resp.json());
+        const data = await getFipeInfo(state.brand, event.target.value);
+
         responseDispatch({
           type: ResponseDispatchActionType.AddYears,
           payload: data,
@@ -48,33 +44,30 @@ export default function SelectComponent({
   };
 
   useEffect(() => {
-    if (placeholder === "Marca") {
-      StateDispatch({
-        type: StateDispatchActionType.AddBrand,
-        payload: selectedVariant,
-      });
-      StateDispatch({
-        type: StateDispatchActionType.AddModel,
-        payload: "",
-      });
-      StateDispatch({
-        type: StateDispatchActionType.AddYear,
-        payload: "",
-      });
-    } else if (placeholder === "Modelo") {
-      StateDispatch({
-        type: StateDispatchActionType.AddModel,
-        payload: selectedVariant,
-      });
-      StateDispatch({
-        type: StateDispatchActionType.AddYear,
-        payload: "",
-      });
-    } else if (placeholder === "Ano") {
-      StateDispatch({
-        type: StateDispatchActionType.AddYear,
-        payload: selectedVariant,
-      });
+    switch (placeholder) {
+      case "Marca":
+        StateDispatch({
+          type: StateDispatchActionType.AddBrand,
+          payload: selectedVariant,
+        });
+        StateDispatch({
+          type: StateDispatchActionType.ClearState,
+        });
+        break;
+      case "Modelo":
+        StateDispatch({
+          type: StateDispatchActionType.AddModel,
+          payload: selectedVariant,
+        });
+        break;
+      case "Ano":
+        StateDispatch({
+          type: StateDispatchActionType.AddYear,
+          payload: selectedVariant,
+        });
+        break;
+      default:
+        break;
     }
   }, [StateDispatch, placeholder, selectedVariant]);
 

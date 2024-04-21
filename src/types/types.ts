@@ -5,6 +5,7 @@ export interface GenericArr {
 
 export interface HomeProps {
   brands: GenericArr[];
+  error?: boolean;
 }
 
 export interface MockResponseObject {

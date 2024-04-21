@@ -2,21 +2,22 @@ import Home, { getStaticProps } from "@/pages";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { ParsedUrlQuery } from "querystring";
-import { GetStaticProps, GetStaticPropsContext } from "next";
+import { GetStaticPropsContext } from "next";
+import { ActionType, Actions, State } from "@/hooks/useResponse/types/types";
+import { reducer } from "@/hooks/useResponse/useResponse";
 
 describe("Page", () => {
   const unmockedFetch = global.fetch;
-
-  beforeEach(() => {
-    render(<Home brands={[{ codigo: "1", nome: "Carros" }]} />);
-  });
-
   beforeAll(() => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve([{ codigo: "1", nome: "Carro" }]),
       })
     ) as jest.Mock;
+  });
+
+  beforeEach(() => {
+    render(<Home brands={[{ codigo: "1", nome: "Carros" }]} />);
   });
 
   afterAll(() => {
@@ -47,5 +48,5 @@ describe("Page", () => {
     };
     const value = getStaticProps(context as GetStaticPropsContext);
     expect(value).toBeTruthy();
-  });
+  });  
 });

@@ -8,18 +8,23 @@ import { useContext, useEffect } from "react";
 import { ResponseContext } from "@/hooks/useResponse/useResponse";
 import { ActionType } from "@/hooks/useResponse/types/types";
 import { HomeProps } from "@/types/types";
+import getFipeInfo from "@/utils/GetFipeInfo";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
 });
 
-export default function Home({ brands }: HomeProps) {
+export default function Home({ brands, error }: HomeProps) {
   const { dispatch } = useContext(ResponseContext);
 
   useEffect(() => {
-    dispatch({ type: ActionType.AddBrands, payload: brands });
-  }, [brands, dispatch]);
+    if (error) {
+      dispatch({ type: ActionType.AddError });
+    } else {
+      dispatch({ type: ActionType.AddBrands, payload: brands });
+    }
+  }, [brands, dispatch, error]);
 
   return (
     <>
@@ -43,9 +48,15 @@ export default function Home({ brands }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await fetch(
-    "https://parallelum.com.br/fipe/api/v1/carros/marcas"
-  ).then((res) => res.json());
+  const data = await getFipeInfo();
+
+  if (data.error) {
+    return {
+      props: {
+        error: true,
+      },
+    };
+  }
 
   return {
     props: {

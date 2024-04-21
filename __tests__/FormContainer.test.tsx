@@ -3,18 +3,16 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("Form Container Component", () => {
-  beforeEach(() => {
-    render(<FormComponent />);
-  });
-
   const unmockedFetch = global.fetch;
-
   beforeAll(() => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve([]),
       })
     ) as jest.Mock;
+  });
+  beforeEach(() => {
+    render(<FormComponent />);
   });
 
   afterAll(() => {
